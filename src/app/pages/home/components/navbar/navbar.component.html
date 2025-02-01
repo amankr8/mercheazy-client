@@ -1,0 +1,51 @@
+<nav class="bg-blue-600 text-white px-6 py-4 shadow-md">
+  <div class="container mx-auto flex justify-between items-center">
+    <!-- Logo -->
+    <a class="text-2xl font-bold tracking-wide" routerLink="/">MerchEazy</a>
+
+    <!-- Menu (Desktop) -->
+    <div class="hidden md:flex items-center space-x-6">
+      <a routerLink="/" class="hover:underline">Home</a>
+      <a routerLink="/shop" class="hover:underline">Shop</a>
+      <a routerLink="/about" class="hover:underline">About</a>
+      <a
+        routerLink="/login"
+        class="bg-white text-blue-600 px-4 py-2 rounded-lg hover:bg-gray-200"
+        >Login</a
+      >
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button (click)="toggleMenu()" class="md:hidden focus:outline-none">
+      <svg
+        class="w-6 h-6"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16m-7 6h7"
+        />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div
+    *ngIf="isMenuOpen"
+    class="md:hidden flex flex-col items-center space-y-4 mt-3"
+  >
+    <a routerLink="/" class="hover:underline">Home</a>
+    <a routerLink="/shop" class="hover:underline">Shop</a>
+    <a routerLink="/about" class="hover:underline">About</a>
+    <a
+      routerLink="/login"
+      class="bg-white text-blue-600 px-4 py-2 rounded-lg hover:bg-gray-200"
+      >Login</a
+    >
+  </div>
+</nav>

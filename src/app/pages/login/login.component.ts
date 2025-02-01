@@ -1,23 +1,23 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
-  FormGroup,
   FormBuilder,
-  Validators,
+  FormGroup,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-signup',
+  selector: 'app-login',
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
-  templateUrl: './signup.component.html',
-  styleUrl: './signup.component.scss',
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.scss',
 })
-export class SignupComponent {
-  signupForm: FormGroup;
+export class LoginComponent {
+  loginForm: FormGroup;
   loading: boolean = false;
 
   constructor(
@@ -26,15 +26,14 @@ export class SignupComponent {
     private snackBar: MatSnackBar,
     private router: Router
   ) {
-    this.signupForm = this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+    this.loginForm = this.fb.group({
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]],
     });
   }
 
   onSubmit() {
-    if (this.signupForm.invalid) {
+    if (this.loginForm.invalid) {
       this.snackBar.open('Please fill all required fields!', 'Close', {
         duration: 3000,
       });
@@ -42,15 +41,15 @@ export class SignupComponent {
     }
 
     this.loading = true; // Start loading
-    this.authService.signup(this.signupForm.value).subscribe({
+    this.authService.login(this.loginForm.value).subscribe({
       next: (response) => {
         this.loading = false; // Stop loading
-        this.snackBar.open('Signup successful!', 'Close', { duration: 3000 });
-        this.router.navigate(['/login']);
+        this.snackBar.open('Login successful!', 'Close', { duration: 3000 });
+        this.router.navigate(['/']);
       },
       error: (err) => {
         this.loading = false; // Stop loading
-        this.snackBar.open('Signup failed. Try again!', 'Close', {
+        this.snackBar.open('Login failed. Try again!', 'Close', {
           duration: 3000,
         });
         console.error(err);
