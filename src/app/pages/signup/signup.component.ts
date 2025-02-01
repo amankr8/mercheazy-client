@@ -18,6 +18,7 @@ import { CommonModule } from '@angular/common';
 })
 export class SignupComponent {
   signupForm: FormGroup;
+  loading: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -40,12 +41,15 @@ export class SignupComponent {
       return;
     }
 
+    this.loading = true; // Start loading
     this.authService.signup(this.signupForm.value).subscribe({
       next: (response) => {
+        this.loading = false; // Stop loading
         this.snackBar.open('Signup successful!', 'Close', { duration: 3000 });
-        // this.router.navigate(['/login']);
+        this.router.navigate(['/login']);
       },
       error: (err) => {
+        this.loading = false; // Stop loading
         this.snackBar.open('Signup failed. Try again!', 'Close', {
           duration: 3000,
         });
