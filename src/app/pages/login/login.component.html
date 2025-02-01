@@ -4,7 +4,11 @@
       Login to <a routerLink="/" class="text-blue-600">MerchEazy</a>
     </h2>
 
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-4">
+    <form
+      [formGroup]="loginForm"
+      (ngSubmit)="onSubmit()"
+      class="flex flex-col gap-y-4"
+    >
       <!-- Username -->
       <div>
         <input
