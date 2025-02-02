@@ -1,5 +1,5 @@
 <div class="flex justify-center items-center min-h-screen bg-gray-100">
-  <div class="bg-white p-8 shadow-md w-96">
+  <div class="bg-white rounded-lg p-8 shadow-md w-96">
     <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">
       Login to <a routerLink="/" class="text-blue-600">MerchEazy</a>
     </h2>
@@ -11,11 +11,14 @@
     >
       <!-- Username -->
       <div>
+        <label for="username" class="block mb-2 text-sm font-medium"
+          >Your Username</label
+        >
         <input
           type="text"
           formControlName="username"
-          class="w-full px-4 py-2 border focus:ring-2 focus:ring-blue-400 focus:outline-none"
-          placeholder="Username"
+          class="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+          placeholder="username"
         />
         <small
           *ngIf="
@@ -30,11 +33,14 @@
 
       <!-- Password -->
       <div>
+        <label for="password" class="block mb-2 text-sm font-medium"
+          >Your Password</label
+        >
         <input
           type="password"
           formControlName="password"
-          class="w-full px-4 py-2 border focus:ring-2 focus:ring-blue-400 focus:outline-none"
-          placeholder="Password"
+          class="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+          placeholder="••••••••"
         />
         <small
           *ngIf="
@@ -50,7 +56,7 @@
       <!-- Submit Button -->
       <button
         type="submit"
-        class="w-full bg-blue-600 text-white py-2 hover:bg-blue-700 transition flex justify-center items-center disabled:opacity-50 disabled:cursor-not-allowed"
+        class="w-full bg-blue-600 rounded-lg text-white py-2 hover:bg-blue-700 transition flex justify-center items-center disabled:opacity-50 disabled:cursor-not-allowed"
         [disabled]="loginForm.invalid || loading"
       >
         <span>Login</span>
