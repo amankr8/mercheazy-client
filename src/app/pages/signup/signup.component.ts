@@ -27,15 +27,26 @@ export class SignupComponent {
     private router: Router
   ) {
     this.signupForm = this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(3)]],
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', [Validators.required]],
     });
   }
 
   onSubmit() {
     if (this.signupForm.invalid) {
       this.snackBar.open('Please fill all required fields!', 'Close', {
+        duration: 3000,
+      });
+      return;
+    }
+
+    if (
+      this.signupForm.value.password !== this.signupForm.value.confirmPassword
+    ) {
+      this.snackBar.open('Passwords do not match!', 'Close', {
         duration: 3000,
       });
       return;
