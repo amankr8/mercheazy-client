@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, RouterModule } from '@angular/router';
-import { AuthService } from '../../service/auth.service';
+import { AuthService } from '../../service/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -44,6 +44,7 @@ export class LoginComponent {
     this.authService.login(this.loginForm.value).subscribe({
       next: (response) => {
         this.loading = false; // Stop loading
+        localStorage.setItem('token', response.token);
         this.snackBar.open('Login successful!', 'Close', { duration: 3000 });
         this.router.navigate(['/']);
       },
