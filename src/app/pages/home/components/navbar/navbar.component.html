@@ -1,53 +1,50 @@
-<nav class="bg-blue-600 text-white px-6 py-4 shadow-md">
-  <div class="container mx-auto flex justify-between items-center">
+<nav class="bg-white border border-gray-300">
+  <div class="max-w-screen-xl flex justify-between items-center mx-auto p-4">
     <!-- Logo -->
-    <a class="text-2xl font-bold tracking-wide" routerLink="/">MerchEazy</a>
+    <a routerLink="/" class="text-2xl font-bold text-blue-700">MerchEazy</a>
 
-    <!-- Menu (Desktop) -->
-    <div class="hidden md:flex items-center gap-2">
-      <a routerLink="/" class="px-4 py-2 rounded hover:bg-blue-700"> Home </a>
-      <a routerLink="/shop" class="px-4 py-2 rounded hover:bg-blue-700">Shop</a>
-      <a routerLink="/about" class="px-4 py-2 rounded hover:bg-blue-700"
-        >About</a
-      >
+    <!-- Navigation Links -->
+    <div class="flex font-medium gap-x-4">
       <a
-        routerLink="/login"
-        class="bg-white text-blue-600 mx-2 px-4 py-2 rounded hover:bg-gray-200"
-        >Login</a
+        routerLink="/"
+        routerLinkActive="text-blue-700 font-semibold"
+        class="text-gray-600 hover:text-blue-600 px-4 py-2"
       >
+        Home
+      </a>
+      <a
+        routerLink="/shop"
+        routerLinkActive="text-blue-700 font-semibold"
+        class="text-gray-600 hover:text-blue-600 px-4 py-2"
+      >
+        Shop
+      </a>
+      <a
+        routerLink="/contact"
+        routerLinkActive="text-blue-700 font-semibold"
+        class="text-gray-600 hover:text-blue-600 px-4 py-2"
+      >
+        Contact
+      </a>
     </div>
 
-    <!-- Mobile Menu Button -->
-    <button (click)="toggleMenu()" class="md:hidden focus:outline-none">
-      <svg
-        class="w-6 h-6"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
+    <!-- Login/Logout Button -->
+    <div>
+      <button
+        *ngIf="!isAuthenticated()"
+        routerLink="/login"
+        class="bg-blue-700 font-medium text-white hover:bg-blue-800 px-4 py-2 rounded-lg"
       >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M4 6h16M4 12h16m-7 6h7"
-        />
-      </svg>
-    </button>
-  </div>
+        Login
+      </button>
 
-  <!-- Mobile Menu -->
-  <div
-    *ngIf="isMenuOpen"
-    class="md:hidden flex justify-center items-center gap-2 mt-5"
-  >
-    <a routerLink="/" class="px-4 py-2 rounded hover:bg-blue-700">Home</a>
-    <a routerLink="/shop" class="px-4 py-2 rounded hover:bg-blue-700">Shop</a>
-    <a routerLink="/about" class="px-4 py-2 rounded hover:bg-blue-700">About</a>
-    <a
-      routerLink="/login"
-      class="bg-white text-blue-600 mx-2 px-4 py-2 rounded-lg hover:bg-gray-200"
-      >Login</a
-    >
+      <button
+        *ngIf="isAuthenticated()"
+        (click)="logout()"
+        class="bg-red-600 font-medium text-white hover:bg-red-700 px-4 py-2 rounded-lg"
+      >
+        Logout
+      </button>
+    </div>
   </div>
 </nav>

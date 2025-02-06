@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -9,9 +9,14 @@ import { RouterModule } from '@angular/router';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
-  isMenuOpen = false;
+  constructor(private router: Router) {}
 
-  toggleMenu() {
-    this.isMenuOpen = !this.isMenuOpen;
+  isAuthenticated(): boolean {
+    return !!localStorage.getItem('token'); // Check if JWT token exists
+  }
+
+  logout() {
+    localStorage.removeItem('token'); // Remove token
+    this.router.navigate(['/login']); // Redirect to login
   }
 }
