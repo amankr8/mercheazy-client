@@ -1,45 +1,47 @@
 <nav class="bg-white border border-gray-300">
-  <div class="max-w-screen-xl flex justify-between items-center mx-auto p-4">
+  <div class="max-w-screen-xl flex justify-between items-center mx-auto py-3">
     <!-- Logo -->
     <a routerLink="/" class="text-2xl text-blue-700 font-medium">MerchEazy</a>
 
     <!-- Navigation Links -->
-    <div class="flex gap-x-4">
+    <div class="flex gap-x-2">
       <a
         routerLink="/"
         routerLinkActive="text-blue-700"
-        class="text-gray-600 hover:text-blue-600 px-4 py-2"
+        class="text-gray-600 hover:text-blue-700 px-4 py-2"
       >
         Home
       </a>
       <a
         routerLink="/creators"
         routerLinkActive="text-blue-700"
-        class="text-gray-600 hover:text-blue-600 px-4 py-2"
+        class="text-gray-600 hover:text-blue-700 px-4 py-2"
       >
         Creators
       </a>
       <a
         routerLink="/contact"
         routerLinkActive="text-blue-700"
-        class="text-gray-600 hover:text-blue-600 px-4 py-2"
+        class="text-gray-600 hover:text-blue-700 px-4 py-2"
       >
         Contact
       </a>
-      <button
-        *ngIf="!isAuthenticated()"
-        routerLink="/login"
-        class="bg-blue-700 text-white hover:bg-blue-800 px-5 py-2 rounded-full"
-      >
-        Login
-      </button>
-      <button
-        *ngIf="isAuthenticated()"
-        (click)="logout()"
-        class="bg-red-600 text-white hover:bg-red-700 px-5 py-2 rounded-full"
-      >
-        Logout
-      </button>
+      <div class="ms-6">
+        <button
+          *ngIf="!isAuthenticated()"
+          routerLink="/login"
+          class="bg-blue-700 text-white hover:bg-blue-800 px-5 py-2 rounded-full"
+        >
+          Login
+        </button>
+        <button
+          *ngIf="isAuthenticated()"
+          (click)="logout()"
+          class="bg-red-600 text-white hover:bg-red-700 px-5 py-2 rounded-full"
+        >
+          Logout
+        </button>
+      </div>
     </div>
   </div>
 </nav>
