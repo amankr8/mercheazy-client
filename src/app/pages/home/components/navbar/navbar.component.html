@@ -26,7 +26,14 @@
       >
         Contact
       </a>
-      <div class="ms-6">
+      <div class="ms-6 flex gap-x-2">
+        <button
+          *ngIf="!isAuthenticated()"
+          routerLink="/login"
+          class="border border-gray-300 text-gray-600 hover:bg-gray-200 px-5 py-2 rounded-full"
+        >
+          Profile
+        </button>
         <button
           *ngIf="!isAuthenticated()"
           routerLink="/login"
