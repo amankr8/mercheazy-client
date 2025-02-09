@@ -9,6 +9,7 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
+  isDropdownOpen = false;
   constructor(private router: Router) {}
 
   isAuthenticated(): boolean {

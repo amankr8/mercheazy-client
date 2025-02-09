@@ -26,28 +26,40 @@
       >
         Contact
       </a>
-      <div class="ms-6 flex gap-x-2">
+      <div class="ms-4 relative">
+        <!-- Button with User Icon -->
         <button
-          *ngIf="!isAuthenticated()"
-          routerLink="/login"
-          class="border border-gray-300 text-gray-600 hover:bg-gray-200 px-5 py-2 rounded-full"
+          (click)="isDropdownOpen = !isDropdownOpen"
+          class="border border-gray-300 text-gray-600 hover:bg-gray-200 px-4 py-2 rounded-full"
         >
-          Profile
+          <i class="fa-regular fa-user"></i>
         </button>
-        <button
-          *ngIf="!isAuthenticated()"
-          routerLink="/login"
-          class="bg-blue-700 text-white hover:bg-blue-800 px-5 py-2 rounded-full"
+
+        <!-- Dropdown Menu -->
+        <div
+          *ngIf="isDropdownOpen"
+          class="absolute right-0 mt-2 w-40 bg-white py-2 border border-gray-300 shadow-md rounded-lg"
         >
-          Login
-        </button>
-        <button
-          *ngIf="isAuthenticated()"
-          (click)="logout()"
-          class="bg-red-600 text-white hover:bg-red-700 px-5 py-2 rounded-full"
-        >
-          Logout
-        </button>
+          <div *ngIf="!isAuthenticated()">
+            <a
+              routerLink="/login"
+              class="block flex justify-center mx-2 px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-800"
+            >
+              Login
+            </a>
+          </div>
+          <div *ngIf="isAuthenticated()">
+            <a class="block px-4 py-2 text-gray-600 hover:bg-gray-200">
+              Profile
+            </a>
+            <a
+              (click)="logout()"
+              class="block px-4 py-2 text-gray-600 hover:bg-gray-200"
+            >
+              Logout
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
