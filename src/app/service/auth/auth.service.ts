@@ -8,7 +8,8 @@ import { User } from '../../interface/user';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = environment.baseUrl + 'api/auth';
+  private apiUrl = environment.baseUrl + '/api/auth';
+  private oauth2Url = environment.baseUrl + '/oauth2/authorization/google';
 
   constructor(private http: HttpClient) {}
 
@@ -18,5 +19,9 @@ export class AuthService {
 
   login(user: { email: string; password: string }): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, user);
+  }
+
+  loginWithGoogle(): void {
+    window.location.href = this.oauth2Url;
   }
 }

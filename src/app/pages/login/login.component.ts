@@ -40,21 +40,25 @@ export class LoginComponent {
       return;
     }
 
-    this.loading = true; // Start loading
+    this.loading = true;
     this.authService.login(this.loginForm.value).subscribe({
       next: (response) => {
-        this.loading = false; // Stop loading
+        this.loading = false;
         localStorage.setItem('token', response.token);
         this.snackBar.open('Login successful!', 'Close', { duration: 3000 });
         this.router.navigate(['/']);
       },
       error: (err) => {
-        this.loading = false; // Stop loading
+        this.loading = false;
         this.snackBar.open('Login failed. Try again!', 'Close', {
           duration: 3000,
         });
         console.error(err);
       },
     });
+  }
+
+  loginWithGoogle() {
+    this.authService.loginWithGoogle();
   }
 }
