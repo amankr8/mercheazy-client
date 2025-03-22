@@ -66,4 +66,8 @@ export class SignupComponent {
       },
     });
   }
+
+  loginWithGoogle() {
+    this.authService.loginWithGoogle();
+  }
 }
