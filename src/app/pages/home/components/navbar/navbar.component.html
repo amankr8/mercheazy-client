@@ -1,4 +1,4 @@
-<nav class="bg-white border-b border-gray-300 px-6 py-3">
+<nav class="bg-white border-b border-gray-300 px-6 py-4">
   <div class="flex justify-between items-center max-w-6xl mx-auto">
     <!-- Logo -->
     <a routerLink="/" class="text-2xl font-semibold text-blue-700">MerchEazy</a>
@@ -16,21 +16,23 @@
     </div>
 
     <!-- Profile Dropdown -->
-    <div class="relative group">
+    <div class="relative">
       <button
-        class="text-gray-700 hover:text-blue-600 flex items-center space-x-2"
+        (mouseenter)="openDropdown()"
+        class="text-gray-700 hover:text-blue-600 flex items-center space-x-2 focus:outline-none"
       >
-        <i class="fa-regular fa-user"></i>
+        <i class="fa-regular fa-user text-xl"></i>
       </button>
 
-      <!-- Dropdown Menu -->
       <div
-        class="absolute right-0 mt-2 w-40 bg-white border border-gray-300 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 invisible group-hover:visible"
+        *ngIf="isDropdownOpen"
+        (mouseleave)="closeDropdown()"
+        class="absolute right-0 mt-2 w-40 bg-white border border-gray-300 rounded-lg shadow-lg p-2"
       >
-        <ng-container *ngIf="!isAuthenticated; else loggedInMenu">
+        <ng-container *ngIf="!isAuthenticated(); else loggedInMenu">
           <a
             routerLink="/login"
-            class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+            class="block w-full bg-blue-600 text-white text-center py-2 rounded-md hover:bg-blue-700 transition"
           >
             Login
           </a>

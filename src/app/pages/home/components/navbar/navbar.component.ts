@@ -9,19 +9,23 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
-  menuOpen = false;
+  isDropdownOpen = false;
   constructor(private router: Router) {}
 
-  toggleMenu() {
-    this.menuOpen = !this.menuOpen;
+  openDropdown() {
+    this.isDropdownOpen = true;
+  }
+
+  closeDropdown() {
+    this.isDropdownOpen = false;
   }
 
   isAuthenticated(): boolean {
-    return !!localStorage.getItem('token'); // Check if JWT token exists
+    return !!localStorage.getItem('token');
   }
 
   logout() {
-    localStorage.removeItem('token'); // Remove token
-    this.router.navigate(['/login']); // Redirect to login
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
   }
 }
