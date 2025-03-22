@@ -1,65 +1,55 @@
-<nav class="bg-white border border-gray-300">
-  <div class="max-w-screen-xl flex justify-between items-center mx-auto py-3">
+<nav class="bg-white border-b border-gray-300 px-6 py-3">
+  <div class="flex justify-between items-center max-w-6xl mx-auto">
     <!-- Logo -->
-    <a routerLink="/" class="text-2xl text-blue-700 font-medium">MerchEazy</a>
+    <a routerLink="/" class="text-2xl font-semibold text-blue-700">MerchEazy</a>
 
-    <!-- Navigation Links -->
-    <div class="flex gap-x-2">
-      <a
-        routerLink="/"
-        routerLinkActive="text-blue-700"
-        class="text-gray-600 hover:text-blue-700 px-4 py-2"
+    <!-- Nav Links -->
+    <div class="hidden md:flex space-x-6">
+      <a routerLink="/home" class="text-gray-700 hover:text-blue-600">Home</a>
+      <a routerLink="/creators" class="text-gray-700 hover:text-blue-600"
+        >Creators</a
       >
-        Home
-      </a>
-      <a
-        routerLink="/creators"
-        routerLinkActive="text-blue-700"
-        class="text-gray-600 hover:text-blue-700 px-4 py-2"
+      <a routerLink="/contact" class="text-gray-700 hover:text-blue-600"
+        >Contact</a
       >
-        Creators
-      </a>
-      <a
-        routerLink="/contact"
-        routerLinkActive="text-blue-700"
-        class="text-gray-600 hover:text-blue-700 px-4 py-2"
-      >
-        Contact
-      </a>
-      <div class="ms-4 relative">
-        <!-- Button with User Icon -->
-        <button
-          (click)="isDropdownOpen = !isDropdownOpen"
-          class="border border-gray-300 text-gray-600 hover:bg-gray-200 px-4 py-2 rounded-full"
-        >
-          <i class="fa-regular fa-user"></i>
-        </button>
+      <a routerLink="/about" class="text-gray-700 hover:text-blue-600">About</a>
+    </div>
 
-        <!-- Dropdown Menu -->
-        <div
-          *ngIf="isDropdownOpen"
-          class="absolute right-0 mt-2 w-40 bg-white py-2 border border-gray-300 shadow-md rounded-lg"
-        >
-          <div *ngIf="!isAuthenticated()">
-            <a
-              routerLink="/login"
-              class="block flex justify-center mx-2 px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-800"
-            >
-              Login
-            </a>
-          </div>
-          <div *ngIf="isAuthenticated()">
-            <a class="block px-4 py-2 text-gray-600 hover:bg-gray-200">
-              Profile
-            </a>
-            <a
-              (click)="logout()"
-              class="block px-4 py-2 text-gray-600 hover:bg-gray-200"
-            >
-              Logout
-            </a>
-          </div>
-        </div>
+    <!-- Profile Dropdown -->
+    <div class="relative group">
+      <button
+        class="text-gray-700 hover:text-blue-600 flex items-center space-x-2"
+      >
+        <i class="fa-regular fa-user"></i>
+      </button>
+
+      <!-- Dropdown Menu -->
+      <div
+        class="absolute right-0 mt-2 w-40 bg-white border border-gray-300 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 invisible group-hover:visible"
+      >
+        <ng-container *ngIf="!isAuthenticated; else loggedInMenu">
+          <a
+            routerLink="/login"
+            class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+          >
+            Login
+          </a>
+        </ng-container>
+
+        <ng-template #loggedInMenu>
+          <a
+            routerLink="/profile"
+            class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+          >
+            Profile
+          </a>
+          <button
+            (click)="logout()"
+            class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
+          >
+            Logout
+          </button>
+        </ng-template>
       </div>
     </div>
   </div>

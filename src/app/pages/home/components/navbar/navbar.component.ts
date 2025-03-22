@@ -9,8 +9,12 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
-  isDropdownOpen = false;
+  menuOpen = false;
   constructor(private router: Router) {}
+
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
 
   isAuthenticated(): boolean {
     return !!localStorage.getItem('token'); // Check if JWT token exists
