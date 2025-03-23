@@ -23,7 +23,7 @@ export class Oauth2RedirectComponent {
     this.route.queryParams.subscribe((params) => {
       const code = params['code'];
       if (code) {
-        this.authService.exchangeCodeForToken(code).subscribe({
+        this.authService.getTokenByAuthCode(code).subscribe({
           next: (response) => {
             this.loading = false;
             localStorage.setItem('token', response.token);

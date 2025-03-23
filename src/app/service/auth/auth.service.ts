@@ -9,7 +9,6 @@ import { User } from '../../interface/user';
 })
 export class AuthService {
   private apiUrl = environment.apiUrl + '/api/auth';
-  private oauth2Url = environment.apiUrl + '/oauth2/authorization/google';
 
   constructor(private http: HttpClient) {}
 
@@ -31,13 +30,10 @@ export class AuthService {
       '/oauth2/callback' +
       '&response_type=code' +
       '&scope=email profile openid';
-
     window.location.href = googleOAuthUrl;
   }
 
-  exchangeCodeForToken(code: string): Observable<any> {
-    return this.http.get(
-      `${environment.apiUrl}/api/auth/google-login?code=${code}`
-    );
+  getTokenByAuthCode(code: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/google-login?code=${code}`);
   }
 }
