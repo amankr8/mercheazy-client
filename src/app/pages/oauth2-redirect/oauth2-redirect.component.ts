@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../service/auth/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-oauth2-redirect',
@@ -9,8 +10,11 @@ import { AuthService } from '../../service/auth/auth.service';
   styleUrl: './oauth2-redirect.component.scss',
 })
 export class Oauth2RedirectComponent {
+  loading: boolean = false;
+
   constructor(
     private authService: AuthService,
+    private snackBar: MatSnackBar,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -20,13 +24,20 @@ export class Oauth2RedirectComponent {
       const code = params['code'];
       if (code) {
         this.authService.exchangeCodeForToken(code).subscribe({
-          next: (res) => {
-            localStorage.setItem('token', res.token);
+          next: (response) => {
+            this.loading = false;
+            localStorage.setItem('token', response.token);
+            this.snackBar.open('Login successful!', 'Close', {
+              duration: 3000,
+            });
             this.router.navigate(['/']);
           },
           error: (err) => {
-            console.error('Google login failed!', err);
-            this.router.navigate(['/login']);
+            this.loading = false;
+            this.snackBar.open('Login failed. Try again!', 'Close', {
+              duration: 3000,
+            });
+            console.error(err);
           },
         });
       }
