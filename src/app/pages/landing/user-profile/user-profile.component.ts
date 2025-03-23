@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { User } from '../../interface/user';
-import { UserService } from '../../service/user/user.service';
+import { User } from '../../../interface/user';
+import { UserService } from '../../../service/user/user.service';
 import { CommonModule } from '@angular/common';
 
 @Component({

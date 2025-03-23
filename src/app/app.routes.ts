@@ -1,16 +1,21 @@
 import { Routes } from '@angular/router';
 import { SignupComponent } from './pages/signup/signup.component';
 import { LoginComponent } from './pages/login/login.component';
-import { HomeComponent } from './pages/home/home.component';
 import { Oauth2RedirectComponent } from './pages/oauth2-redirect/oauth2-redirect.component';
-import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import { UserProfileComponent } from './pages/landing/user-profile/user-profile.component';
 import { AuthGuard } from './util/guard/auth.guard';
+import { HomeComponent } from './pages/landing/home/home.component';
+import { LandingComponent } from './pages/landing/landing.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    component: LandingComponent,
     children: [
+      {
+        path: '',
+        component: HomeComponent,
+      },
       {
         path: 'profile',
         component: UserProfileComponent,
