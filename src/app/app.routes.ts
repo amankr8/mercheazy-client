@@ -7,14 +7,19 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import { AuthGuard } from './util/guard/auth.guard';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
+  {
+    path: '',
+    component: HomeComponent,
+    children: [
+      {
+        path: 'profile',
+        component: UserProfileComponent,
+        canActivate: [AuthGuard],
+      },
+    ],
+  },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   { path: 'oauth2/callback', component: Oauth2RedirectComponent },
-  {
-    path: 'profile',
-    component: UserProfileComponent,
-    canActivate: [AuthGuard],
-  },
   { path: '**', redirectTo: '' },
 ];
