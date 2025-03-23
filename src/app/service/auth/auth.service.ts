@@ -22,6 +22,22 @@ export class AuthService {
   }
 
   loginWithGoogle(): void {
-    window.location.href = this.oauth2Url;
+    const googleOAuthUrl =
+      'https://accounts.google.com/o/oauth2/auth' +
+      '?client_id=' +
+      environment.googleClientId +
+      '&redirect_uri=' +
+      environment.frontendBaseUrl +
+      '/oauth2/callback' +
+      '&response_type=code' +
+      '&scope=email profile openid';
+
+    window.open(googleOAuthUrl, '_blank', 'width=500,height=600');
+  }
+
+  exchangeCodeForToken(code: string): Observable<any> {
+    return this.http.get(
+      `${environment.baseUrl}/api/auth/google-login?code=${code}`
+    );
   }
 }

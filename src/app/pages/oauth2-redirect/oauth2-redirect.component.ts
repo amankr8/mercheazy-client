@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../../service/auth/auth.service';
 
 @Component({
   selector: 'app-oauth2-redirect',
@@ -8,16 +9,26 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './oauth2-redirect.component.scss',
 })
 export class Oauth2RedirectComponent {
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
-      const token = params['token'];
-      if (token) {
-        localStorage.setItem('token', token);
-        this.router.navigate(['/']);
-      } else {
-        this.router.navigate(['/login']);
+      const code = params['code'];
+      if (code) {
+        this.authService.exchangeCodeForToken(code).subscribe({
+          next: (res) => {
+            localStorage.setItem('token', res.token);
+            this.router.navigate(['/']);
+          },
+          error: (err) => {
+            console.error('Google login failed!', err);
+            this.router.navigate(['/login']);
+          },
+        });
       }
     });
   }
