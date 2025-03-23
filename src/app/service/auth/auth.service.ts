@@ -8,8 +8,8 @@ import { User } from '../../interface/user';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = environment.baseUrl + '/api/auth';
-  private oauth2Url = environment.baseUrl + '/oauth2/authorization/google';
+  private apiUrl = environment.apiUrl + '/api/auth';
+  private oauth2Url = environment.apiUrl + '/oauth2/authorization/google';
 
   constructor(private http: HttpClient) {}
 
@@ -27,17 +27,17 @@ export class AuthService {
       '?client_id=' +
       environment.googleClientId +
       '&redirect_uri=' +
-      environment.frontendBaseUrl +
+      environment.frontendUrl +
       '/oauth2/callback' +
       '&response_type=code' +
       '&scope=email profile openid';
 
-    window.open(googleOAuthUrl, '_blank', 'width=500,height=600');
+    window.location.href = googleOAuthUrl;
   }
 
   exchangeCodeForToken(code: string): Observable<any> {
     return this.http.get(
-      `${environment.baseUrl}/api/auth/google-login?code=${code}`
+      `${environment.apiUrl}/api/auth/google-login?code=${code}`
     );
   }
 }
