@@ -12,8 +12,8 @@ export class NavbarComponent {
   isDropdownOpen = false;
   constructor(private router: Router) {}
 
-  openDropdown() {
-    this.isDropdownOpen = true;
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
   }
 
   closeDropdown() {
