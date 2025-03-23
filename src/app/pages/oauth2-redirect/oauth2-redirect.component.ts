@@ -37,6 +37,7 @@ export class Oauth2RedirectComponent {
             this.snackBar.open('Login failed. Try again!', 'Close', {
               duration: 3000,
             });
+            this.router.navigate(['/login']);
             console.error(err);
           },
         });
