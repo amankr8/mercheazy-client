@@ -15,44 +15,61 @@
       <a routerLink="/about" class="text-gray-700 hover:text-blue-600">About</a>
     </div>
 
-    <!-- Profile Dropdown -->
-    <div class="relative">
-      <button
-        (mouseenter)="toggleDropdown()"
-        class="text-gray-700 hover:text-blue-600 flex items-center gap-x-2 focus:outline-none"
-      >
-        <i class="fa-regular fa-user text-xl"></i>
-      </button>
+    <!-- Profile & Cart Icons -->
+    <div class="flex items-center gap-x-6 relative">
+      <!-- Profile Dropdown -->
+      <div class="relative">
+        <button
+          (mouseenter)="toggleDropdown()"
+          class="text-gray-700 hover:text-blue-600 flex items-center gap-x-2 focus:outline-none"
+        >
+          <i class="fa-regular fa-user text-xl"></i>
+        </button>
 
-      <div
-        *ngIf="isDropdownOpen"
-        (mouseleave)="closeDropdown()"
-        class="absolute right-0 mt-2 w-40 bg-white border border-gray-300 rounded-lg shadow-lg p-2"
-      >
-        <ng-container *ngIf="!isAuthenticated(); else loggedInMenu">
-          <a
-            routerLink="/login"
-            class="block w-full bg-blue-600 text-white text-center py-2 rounded-md hover:bg-blue-700 transition"
-          >
-            Login
-          </a>
-        </ng-container>
+        <div
+          *ngIf="isDropdownOpen"
+          (mouseleave)="closeDropdown()"
+          class="absolute right-0 mt-2 w-40 bg-white border border-gray-300 rounded-lg shadow-lg p-2"
+        >
+          <ng-container *ngIf="!isAuthenticated(); else loggedInMenu">
+            <a
+              routerLink="/login"
+              class="block w-full bg-blue-600 text-white text-center py-2 rounded-md hover:bg-blue-700 transition"
+            >
+              Login
+            </a>
+          </ng-container>
 
-        <ng-template #loggedInMenu>
-          <a
-            routerLink="/profile"
-            class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-          >
-            Profile
-          </a>
-          <button
-            (click)="logout()"
-            class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
-          >
-            Logout
-          </button>
-        </ng-template>
+          <ng-template #loggedInMenu>
+            <a
+              routerLink="/profile"
+              class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+            >
+              Profile
+            </a>
+            <button
+              (click)="logout()"
+              class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
+            >
+              Logout
+            </button>
+          </ng-template>
+        </div>
       </div>
+
+      <!-- Cart Icon -->
+      <a
+        routerLink="/cart"
+        class="text-gray-700 hover:text-blue-600 relative flex items-center"
+      >
+        <i class="fa-solid fa-shopping-cart text-xl"></i>
+        <span
+          *ngIf="cartItemCount > 0"
+          class="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full"
+        >
+          {{ cartItemCount }}
+        </span>
+      </a>
     </div>
   </div>
 </nav>

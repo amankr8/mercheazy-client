@@ -9,7 +9,8 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
-  isDropdownOpen = false;
+  isDropdownOpen: boolean = false;
+  cartItemCount: number = 0;
   constructor(private router: Router) {}
 
   toggleDropdown() {
