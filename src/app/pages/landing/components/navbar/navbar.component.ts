@@ -17,10 +17,6 @@ export class NavbarComponent {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
 
-  closeDropdown() {
-    this.isDropdownOpen = false;
-  }
-
   isAuthenticated(): boolean {
     return !!localStorage.getItem('token');
   }

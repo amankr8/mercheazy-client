@@ -20,15 +20,15 @@
       <!-- Profile Dropdown -->
       <div class="relative">
         <button
-          (mouseenter)="toggleDropdown()"
-          class="text-gray-700 hover:text-blue-600 flex items-center gap-x-2 focus:outline-none"
+          (click)="toggleDropdown()"
+          class="text-gray-700 hover:text-blue-600 flex items-center gap-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition focus:outline-none"
         >
-          <i class="fa-regular fa-user text-xl"></i>
+          <i class="fa-regular fa-user-circle text-xl"></i>
+          <span class="text-base font-medium">Account</span>
         </button>
 
         <div
           *ngIf="isDropdownOpen"
-          (mouseleave)="closeDropdown()"
           class="absolute right-0 mt-2 w-40 bg-white border border-gray-300 rounded-lg shadow-lg p-2"
         >
           <ng-container *ngIf="!isAuthenticated(); else loggedInMenu">
