@@ -1,1 +1,88 @@
-<div class="min-h-screen bg-gray-100 p-8"></div>
+<!-- Hero Section -->
+<section class="bg-blue-50 py-16 px-6 text-center">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-4xl md:text-5xl font-bold text-blue-700 mb-4">
+      Discover Exclusive Creator Merch
+    </h1>
+    <p class="text-gray-600 text-lg mb-6">
+      Support your favorite creators with high-quality, unique products.
+    </p>
+    <a
+      routerLink="/home"
+      class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
+    >
+      Shop Now
+    </a>
+  </div>
+</section>
+
+<!-- Featured Products -->
+<section class="py-16 px-6 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl font-semibold text-center text-gray-800 mb-10">
+      Featured Products
+    </h2>
+
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
+    >
+      <div
+        *ngFor="let product of products"
+        class="border border-gray-200 rounded-lg shadow hover:shadow-md transition"
+      >
+        <img
+          [src]="product.imageUrl"
+          alt="{{ product.name }}"
+          class="w-full h-60 object-cover rounded-t-lg"
+        />
+        <div class="p-4">
+          <h3 class="text-lg font-semibold text-gray-800">
+            {{ product.name }}
+          </h3>
+          <p class="text-gray-600 text-sm mt-1">{{ product.creator }}</p>
+          <p class="text-blue-700 font-bold mt-2">₹{{ product.price }}</p>
+          <a
+            [routerLink]="['/product', product.id]"
+            class="block mt-4 text-center bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+          >
+            View Product
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why MerchEazy -->
+<section class="py-16 bg-gray-50 px-6">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="text-3xl font-bold text-gray-800 mb-6">Why MerchEazy?</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-white p-6 rounded-lg shadow">
+        <i class="fa-solid fa-bolt text-blue-600 text-3xl mb-4"></i>
+        <h4 class="font-semibold text-lg text-gray-700 mb-2">Fast Delivery</h4>
+        <p class="text-gray-600 text-sm">
+          Get your merch delivered quickly and reliably.
+        </p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow">
+        <i class="fa-solid fa-shirt text-blue-600 text-3xl mb-4"></i>
+        <h4 class="font-semibold text-lg text-gray-700 mb-2">
+          Quality Apparel
+        </h4>
+        <p class="text-gray-600 text-sm">
+          Comfortable and stylish merchandise approved by creators.
+        </p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow">
+        <i class="fa-solid fa-heart text-blue-600 text-3xl mb-4"></i>
+        <h4 class="font-semibold text-lg text-gray-700 mb-2">
+          Support Creators
+        </h4>
+        <p class="text-gray-600 text-sm">
+          Every purchase supports the creator you love.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
