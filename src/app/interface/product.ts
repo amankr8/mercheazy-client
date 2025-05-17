@@ -8,7 +8,7 @@ export interface Product {
   listPrice: number;
   stock?: number;
   images: Image[];
-  storeId: number;
+  storeName: string;
   createDate: Date;
   updateDate: Date;
 }

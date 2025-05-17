@@ -42,7 +42,7 @@
           <h3 class="text-lg font-semibold text-gray-800">
             {{ product.name }}
           </h3>
-          <p class="text-gray-600 text-sm mt-1">{{ product.desc }}</p>
+          <p class="text-gray-600 text-sm mt-1">{{ product.storeName }}</p>
           <p class="text-blue-700 font-bold mt-2">₹{{ product.sellPrice }}</p>
           <a
             [routerLink]="['/product', product.id]"
