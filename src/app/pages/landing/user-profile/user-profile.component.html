@@ -1,39 +1,68 @@
-<div class="bg-gray-100 flex justify-center">
-  <div class="bg-white h-auto rounded-lg p-8 w-96 my-8">
-    <!-- Profile Header -->
-    <div class="text-center mb-6">
-      <div
-        class="w-24 h-24 mx-auto rounded-full bg-gray-200 flex items-center justify-center"
+<div class="flex min-h-screen bg-gray-50">
+  <!-- Sidebar -->
+  <!-- Sidebar -->
+  <aside class="w-72 space-y-4 p-4 bg-gray-100">
+    <!-- My Orders Card -->
+    <div class="bg-white rounded-lg shadow p-4">
+      <h3 class="text-sm text-gray-500 font-semibold mb-2">MY ORDERS</h3>
+      <a class="block text-sm text-gray-700 hover:text-blue-600 cursor-pointer"
+        >Orders</a
       >
-        <i class="fa-regular fa-user text-4xl text-gray-500"></i>
-      </div>
-      <h2 class="text-2xl font-medium text-gray-800 mt-4">{{ user?.name }}</h2>
-      <p class="text-gray-600 text-sm">{{ user?.email }}</p>
     </div>
 
-    <!-- Profile Details -->
-    <div class="flex flex-col gap-y-4">
-      <div class="flex justify-between border-b border-gray-400 pb-2">
-        <span class="text-gray-600">Full Name:</span>
-        <span class="text-gray-800 font-medium">{{ user?.name }}</span>
-      </div>
-      <div class="flex justify-between border-b border-gray-400 pb-2">
-        <span class="text-gray-600">Email:</span>
-        <span class="text-gray-800 font-medium">{{ user?.email }}</span>
-      </div>
-      <div class="flex justify-between border-b border-gray-400 pb-2">
-        <span class="text-gray-600">Joined:</span>
-        <span class="text-gray-800 font-medium">{{
-          user?.createDate | date
-        }}</span>
-      </div>
+    <!-- Account Settings Card -->
+    <div class="bg-white rounded-lg shadow p-4">
+      <h3 class="text-sm text-gray-500 font-semibold mb-2">ACCOUNT SETTINGS</h3>
+      <a class="block text-sm text-blue-600 font-semibold mb-1 cursor-pointer"
+        >Profile Information</a
+      >
+      <a
+        class="block text-sm text-gray-700 hover:text-blue-600 mb-1 cursor-pointer"
+        >Manage Addresses</a
+      >
+      <a class="block text-sm text-gray-700 hover:text-blue-600 cursor-pointer"
+        >PAN Card Information</a
+      >
     </div>
 
-    <!-- Edit Profile Button -->
-    <button
-      class="w-full mt-6 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
-    >
-      Edit Profile
-    </button>
-  </div>
+    <!-- Payments Card -->
+    <div class="bg-white rounded-lg shadow p-4">
+      <h3 class="text-sm text-gray-500 font-semibold mb-2">PAYMENTS</h3>
+      <a
+        class="block text-sm text-gray-700 hover:text-blue-600 mb-1 cursor-pointer"
+        >Gift Cards</a
+      >
+      <a
+        class="block text-sm text-gray-700 hover:text-blue-600 mb-1 cursor-pointer"
+        >Saved UPI</a
+      >
+      <a class="block text-sm text-gray-700 hover:text-blue-600 cursor-pointer"
+        >Saved Cards</a
+      >
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 p-8">
+    <div class="bg-white shadow rounded-lg p-6">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-lg font-semibold">Personal Information</h2>
+        <button class="text-blue-600 hover:underline text-sm">Edit</button>
+      </div>
+      <div class="grid grid-cols-2 gap-4 text-sm">
+        <div>
+          <label class="block text-gray-500">Full Name</label>
+          <div>{{ user?.name }}</div>
+        </div>
+        <div>
+          <label class="block text-gray-500">Email Address</label>
+          <div>{{ user?.email }}</div>
+        </div>
+        <div>
+          <label class="block text-gray-500">Joined</label>
+          <div>{{ user?.createDate | date }}</div>
+        </div>
+      </div>
+    </div>
+  </main>
 </div>
