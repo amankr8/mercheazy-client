@@ -74,7 +74,6 @@
         </div>
       </div>
 
-      <!-- 🔴 Delete Account Button -->
       <div class="mt-6 text-right">
         <button
           (click)="showConfirmationModal = true"
@@ -101,10 +100,16 @@
     <div class="flex justify-end gap-x-4">
       <button
         (click)="deleteAccount()"
-        class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+        [disabled]="loading"
+        class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition flex justify-center items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        Delete
+        <span *ngIf="!loading">Delete</span>
+        <span
+          *ngIf="loading"
+          class="animate-spin h-5 w-5 border-t-2 border-white rounded-full"
+        ></span>
       </button>
+
       <button
         (click)="showConfirmationModal = false"
         class="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400"

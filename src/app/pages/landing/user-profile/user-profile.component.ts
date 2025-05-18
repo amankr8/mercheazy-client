@@ -23,6 +23,7 @@ export class UserProfileComponent {
   ) {}
 
   ngOnInit() {
+    this.loading = true;
     this.userService.getLoginUser().subscribe({
       next: (res) => {
         this.user = res;
@@ -36,8 +37,10 @@ export class UserProfileComponent {
   }
 
   deleteAccount() {
+    this.loading = true;
     this.userService.deleteLoginUser().subscribe({
       next: () => {
+        this.loading = false;
         this.showConfirmationModal = false;
         localStorage.removeItem('token');
         this.router.navigate(['/login']);
@@ -46,6 +49,8 @@ export class UserProfileComponent {
         });
       },
       error: (err) => {
+        this.loading = false;
+        this.showConfirmationModal = false;
         console.error(err);
         this.snackBar.open('Failed to delete account', 'Close', {
           duration: 3000,
