@@ -23,4 +23,8 @@ export class UserService {
   public getLoginUser(): Observable<User> {
     return this.http.get<User>(`${this.apiUrl}/current`);
   }
+
+  public deleteLoginUser(): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/current`);
+  }
 }
