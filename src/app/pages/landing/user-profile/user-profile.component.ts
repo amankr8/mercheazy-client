@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 })
 export class UserProfileComponent {
   user: User | null = null;
+  loading = false;
 
   constructor(private userService: UserService) {}
 
@@ -18,9 +19,11 @@ export class UserProfileComponent {
     this.userService.getLoginUser().subscribe({
       next: (res) => {
         this.user = res;
+        this.loading = false;
       },
       error: (err) => {
         console.error(err);
+        this.loading = false;
       },
     });
   }

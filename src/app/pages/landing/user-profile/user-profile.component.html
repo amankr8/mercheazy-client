@@ -1,5 +1,15 @@
-<div class="flex min-h-screen bg-gray-50">
-  <!-- Sidebar -->
+<!-- Loading Spinner -->
+<div
+  *ngIf="loading"
+  class="flex items-center justify-center min-h-screen w-full"
+>
+  <div class="text-blue-600 text-lg font-medium animate-pulse">
+    Loading profile...
+  </div>
+</div>
+
+<!-- Profile Page -->
+<div *ngIf="!loading" class="flex min-h-screen bg-gray-50">
   <!-- Sidebar -->
   <aside class="w-72 flex flex-col gap-y-4 p-4 bg-gray-100">
     <!-- My Orders Card -->
